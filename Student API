@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "ad96e296-6b5c-450e-8dac-89b82642f378",
+		"name": "1_Student API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30662907"
+	},
+	"item": [
+		{
+			"name": "Get Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"status is OK\",()=>{\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"status code is 201,200\", ()=>{\r",
+							"    pm.expect(pm.response.code).to.have.oneOf([200,201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is persent\",()=>{\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", ()=>{\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Time shall be less than 50 mm\",()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Time shall be above 50 mm\",()=>{\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(50);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('status is created', () => {\r",
+							"    pm.response.to.have.status('Created');\r",
+							"})\r",
+							"\r",
+							"pm.test('Status code is 201', () => {\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"\r",
+							"pm.test('status code is 201 or 200', () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([\r",
+							"        200,\r",
+							"        201\r",
+							"    ]);\r",
+							"})\r",
+							"\r",
+							"pm.test('status code is 200', () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"var jsonData = pm.response.jsonData;\r",
+							"\r",
+							"pm.test(\"test the json data\", ()=>{\r",
+							"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"Steve\",\r\n      \"Location\": \"India\",\r\n      \"Phone\": \"12345\",\r\n      \"Courser\": [\r\n        \"Java\",\r\n        \"Selenium\"\r\n      ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/Students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code to be 200\", ()=>{\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"name\": \"Sujit123456\",\r\n      \"Location\": \"India\",\r\n      \"Phone\": \"12345\",\r\n      \"Courser\": [\r\n        \"Java\",\r\n        \"Selenium\"\r\n      ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/Students/ad72",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students",
+						"ad72"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Students/6315",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Students",
+						"6315"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
